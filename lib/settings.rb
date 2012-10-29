@@ -19,7 +19,7 @@ module Settings
       destination.class.instance_eval do
         @__settings.each do |setting|
           if me.respond_to? setting
-            set_attribute destination, setting
+            me.set_attribute destination, setting
           end
         end unless not @__settings
       end
