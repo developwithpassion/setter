@@ -5,27 +5,40 @@ module Settings
 
   def self.set(source, destination)
     destination.class.instance_eval do
-      @list_of_settings.each do |setting|
+      @__settings.each do |setting|
         if source.respond_to? setting
-          destination.send :"#{setting.to_s}=", (source.send setting)
+          set_attribute destination, setting
         end
-      end unless not @list_of_settings
+      end unless not @__settings
     end
+  end
+
+  def set(destination, name=nil)
+    if not name
+      me = self
+      destination.class.instance_eval do
+        @__settings.each do |setting|
+          if me.respond_to? setting
+            set_attribute destination, setting
+          end
+        end unless not @__settings
+      end
+    else
+      set_attribute destination, name
+    end
+  end
+
+  def set_attribute(destination, name)
+    destination.send :"#{name.to_s}=", (send name)
   end
 
   module ClassMethods
     def setting(setting_name)
-      send :define_method, :"#{setting_name.to_s}=" do |value|
-        instance_variable_set "@#{setting_name.to_s}", value
-      end
-
-      send :define_method, setting_name do
-        instance_variable_get "@#{setting_name.to_s}"
-      end
+      attr_accessor setting_name
 
       self.instance_eval do
-        @list_of_settings ||= []
-        @list_of_settings << setting_name
+        @__settings ||= []
+        @__settings << setting_name
       end
     end
   end
