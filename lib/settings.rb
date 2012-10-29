@@ -3,17 +3,17 @@ module Settings
     base.extend ClassMethods
   end
 
-  module ClassMethods
-    def set(source, destination)
-      destination.class.instance_eval do
-        @list_of_settings.each do |setting|
-          if source.respond_to? setting
-            destination.send :"#{setting.to_s}=", (source.send setting)
-          end
-        end unless not @list_of_settings
-      end
+  def self.set(source, destination)
+    destination.class.instance_eval do
+      @list_of_settings.each do |setting|
+        if source.respond_to? setting
+          destination.send :"#{setting.to_s}=", (source.send setting)
+        end
+      end unless not @list_of_settings
     end
+  end
 
+  module ClassMethods
     def setting(setting_name)
       send :define_method, :"#{setting_name.to_s}=" do |value|
         instance_variable_set "@#{setting_name.to_s}", value
