@@ -6,7 +6,7 @@ class Destination
 end
 
 class Source
-  include Settings
+  include Settings::Setter
 
   attr_accessor :some_setting
   attr_accessor :other_setting
