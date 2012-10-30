@@ -11,6 +11,6 @@ module Setter
   end
 
   def set_attribute(receiver, name)
-    receiver.send :"#{setting}=", (send name) if respond_to?(name)
+    receiver.send :"#{name}=", (send name) if respond_to?(name)
   end
 end
