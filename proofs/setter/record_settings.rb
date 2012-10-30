@@ -1,6 +1,7 @@
 require_relative '../proofs_init'
 
-r = Receiver.new
-# proof: recorded?(:setting, :setting), sends sym to both objects
-raise "Fail: setting not recorded" unless r.class.settings.include? :some_setting
-raise "Fail: setting not recorded" unless r.class.settings.include? :other_setting
+desc "Record setting attributes names"
+Proof.start do
+  r = Receiver.new
+  r.prove { settings_recorded? [:some_setting, :other_setting] }
+end
