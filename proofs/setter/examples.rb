@@ -1,11 +1,11 @@
-class Destination
+class Receiver
   include Setter::Settings
 
   setting :some_setting
   setting :other_setting
 end
 
-class Source
+class Sender
   include Setter
 
   attr_accessor :some_setting

@@ -1,10 +1,10 @@
 require_relative 'proofs_init'
 
-s = Source.new
+s = Sender.new
 s.some_setting = 'some value'
 
-d = Destination.new
-raise "Fail: setting not recorded" unless d.class.settings.include? :some_setting
+r = Receiver.new
+raise "Fail: setting not recorded" unless r.class.settings.include? :some_setting
 
-s.set d, :some_setting
-raise "Fail: value not set" unless d.some_setting
+s.set r, :some_setting
+raise "Fail: value not set" unless r.some_setting
