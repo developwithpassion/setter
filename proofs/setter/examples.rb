@@ -1,4 +1,4 @@
-class Implementation
+class SomeImplementation
   def some_method
   end
 end
@@ -8,6 +8,8 @@ class Receiver
 
   setting :some_setting
   setting :other_setting
+  setting :setting_with_default, :default => 13
+  setting :setting_with_default_null_object, :default => null_object(SomeImplementation)
 
   module Proof
     def set?(attribute, sender)
@@ -16,26 +18,28 @@ class Receiver
 
     def all_set?(sender)
       self.class.settings.each do |setting|
-        set? setting, sender
+        set? setting, sender if sender.respond_to? setting
       end
     end
 
     def settings_recorded?(attributes)
       self.class.settings.sort <=> attributes.sort
     end
+
+    def no_op?(value)
+      value == nil
+    end
+
+    def no_method?
+      begin
+        yield
+      rescue NoMethodError
+        return true
+      rescue
+        return false
+      end
+    end
   end
-end
-
-class ReceiverWithDefaultSetting
-  include Setter::Settings
-
-  setting :default_setting, :default => 13
-end
-
-class ReceiverWithNullObject
-  include Setter::Settings
-
-  setting :null_object, :default => null_object(Implementation)
 end
 
 class Sender

@@ -1,21 +1,15 @@
 require_relative '../proofs_init'
 
-s = Sender.new
+desc "Respond with nil to implemented methods"
+Proof.start do
+  r = Receiver.new
 
-r = ReceiverWithNullObject.new
+  r.prove { no_op? setting_with_default_null_object.some_method }
+end
 
-s.set r
-implementation = r.null_object
+desc "Raise NoMethodError if unimplememented method called"
+Proof.start do
+  r = Receiver.new
 
-# proof: null_object should be the default if default is set and setting isn't
-raise "Fail: null_object is not the default setting" unless implementation
-
-# proof: null_object responds `nil` to implemented methods
-raise "Fail: null_object didn't respond with `nil`" unless implementation.some_method == nil
-
-# proof: null_object throws if not implemented method called
-begin
-  implementation.foo
-  raise "Fail: null_object did not throw when called with unimplemented method"
-rescue NoMethodError
+  r.prove { no_method? { setting_with_default_null_object.foo }}
 end
