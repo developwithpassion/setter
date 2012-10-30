@@ -1,9 +1,12 @@
 require_relative '../proofs_init'
 
-s = Sender.new
-s.some_setting = 'some value'
+desc "Transfer specific setting attribute value from sender to receiver"
+Proof.start do
+  s = Sender.new
+  s.some_setting = 'some value'
 
-r = Receiver.new
+  r = Receiver.new
+  s.set r, :some_setting
 
-s.set r, :some_setting
-raise "Fail: value not set" unless r.some_setting
+  r.prove { set? :some_setting, s }
+end

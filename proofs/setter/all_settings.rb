@@ -1,12 +1,12 @@
 require_relative '../proofs_init'
 
-s = Sender.new
-s.some_setting = 'some value'
-s.other_setting = 'other value'
+desc "Transfer all setting attribute values from sender to receiver"
+Proof.start do
+  s = Sender.new
+  s.some_setting = 'some value'
 
-r = Receiver.new
+  r = Receiver.new
+  s.set r, :some_setting
 
-s.set r
-# proof: set?(:setting), sends sym to both objects
-raise "Fail: value not set" unless r.some_setting == s.some_setting
-raise "Fail: value not set" unless r.other_setting == s.other_setting
+  r.prove { all_set? s }
+end
