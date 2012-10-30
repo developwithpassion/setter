@@ -1,12 +1,12 @@
 class Destination
-  include Settings
+  include Setter::Settings
 
   setting :some_setting
   setting :other_setting
 end
 
 class Source
-  include Settings::Setter
+  include Setter
 
   attr_accessor :some_setting
   attr_accessor :other_setting
