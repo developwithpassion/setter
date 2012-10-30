@@ -1,4 +1,4 @@
-require_relative 'proofs_init'
+require_relative '../proofs_init'
 
 s = Sender.new
 s.some_setting = 'some value'

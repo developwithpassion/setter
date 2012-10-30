@@ -1,4 +1,4 @@
-require_relative 'proofs_init'
+require_relative '../proofs_init'
 
 r = Receiver.new
 # proof: recorded?(:setting, :setting), sends sym to both objects
