@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.summary = 'Setter Library'
   s.version = Setter::VERSION
   s.authors = 'We made this'
-  s.require_paths = ["lib"]
-  s.files = Dir.glob("{lib}/**/*")
+  s.require_paths = ['lib']
+  s.files = Dir.glob('{lib}/**/*')
   s.platform = Gem::Platform::RUBY
   s.required_ruby_version = '>= 1.9.2'
   s.add_dependency 'null_object'
