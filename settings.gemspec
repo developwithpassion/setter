@@ -2,10 +2,13 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
+require 'settings/version'
+
 Gem::Specification.new do |s|
   s.name = "settings"
-  s.summary = "Module for settings magic"
-  s.version = "0.0.0"
+  s.summary = "Settings Library"
+  s.version = Settings::VERSION
+  s.authors = 'We made this'
   s.require_paths = ["lib"]
   s.files = Dir.glob("{lib}/**/*")
   s.platform = Gem::Platform::RUBY

@@ -1,4 +1,4 @@
-require_relative "../lib/settings"
+require_relative 'proofs_init'
 
 class Source
   include Settings
