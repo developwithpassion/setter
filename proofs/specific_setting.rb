@@ -1,5 +1,4 @@
 require_relative 'proofs_init'
-require_relative 'examples'
 
 s = Source.new
 s.some_setting = 'some value'
