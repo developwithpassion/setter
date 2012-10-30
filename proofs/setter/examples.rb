@@ -1,3 +1,8 @@
+class Implementation
+  def some_method
+  end
+end
+
 class Receiver
   include Setter::Settings
 
@@ -19,6 +24,18 @@ class Receiver
       self.class.settings.sort <=> attributes.sort
     end
   end
+end
+
+class ReceiverWithDefaultSetting
+  include Setter::Settings
+
+  setting :default_setting, :default => 13
+end
+
+class ReceiverWithNullObject
+  include Setter::Settings
+
+  setting :null_object, :default => null_object(Implementation)
 end
 
 class Sender
