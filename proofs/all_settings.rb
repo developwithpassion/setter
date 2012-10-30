@@ -6,6 +6,7 @@ s.some_setting = 'some value'
 s.other_setting = 'other value'
 
 d = Destination.new
+# proof: recorded?(:setting, :setting), sends sym to both objects
 raise "Fail: setting not recorded" unless d.class.settings.include? :some_setting
 raise "Fail: setting not recorded" unless d.class.settings.include? :other_setting
 

@@ -3,19 +3,19 @@ module Settings
     base.extend ClassMethods
   end
 
-  def set(destination, setting=nil)
-    set_attributes(destination) unless setting
-    set_attribute(destination, setting) if setting
+  def set(receiver, setting=nil)
+    set_attributes(receiver) unless setting
+    set_attribute(receiver, setting) if setting
   end
 
-  def set_attributes(destination)
-    destination.class.settings.each do |setting|
-      set_attribute destination, setting
+  def set_attributes(receiver)
+    receiver.class.settings.each do |setting|
+      set_attribute receiver, setting
     end
   end
 
-  def set_attribute(destination, setting)
-    destination.send :"#{setting}=", (send setting) if respond_to?(setting)
+  def set_attribute(receiver, setting)
+    receiver.send :"#{setting}=", (send setting) if respond_to?(setting)
   end
 
   module ClassMethods
