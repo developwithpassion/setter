@@ -3,49 +3,29 @@ module Settings
     base.extend ClassMethods
   end
 
-  def set(destination, name=nil)
-    if not name
-      me = self
-      destination.class.instance_eval do
-        @__settings.each do |setting|
-          if me.respond_to? setting
-            me.set_attribute destination, setting
-          end
-        end unless not @__settings
-      end
-    else
-      set_attribute destination, name
+  def set(destination, setting=nil)
+    set_attributes(destination) unless setting
+    set_attribute(destination, setting) if setting
+  end
+
+  def set_attributes(destination)
+    destination.class.settings.each do |setting|
+      set_attribute destination, setting
     end
   end
 
-  def set_attribute(destination, name)
-    destination.send :"#{name.to_s}=", (send name)
+  def set_attribute(destination, setting)
+    destination.send :"#{setting}=", (send setting) if respond_to?(setting)
   end
 
   module ClassMethods
-    def setting(setting_name)
-      attr_accessor setting_name
-
-      self.instance_eval do
-        @__settings ||= []
-        @__settings << setting_name
-      end
+    def setting(setting)
+      attr_accessor setting
+      settings << setting
     end
 
     def settings
-      @__settings
+      @settings ||= []
     end
-
-  def set(source, destination)
-    destination.class.instance_eval do
-      @__settings.each do |setting|
-        if source.respond_to? setting
-          set_attribute destination, setting
-        end
-      end unless not @__settings
-    end
-  end
-
-
   end
 end

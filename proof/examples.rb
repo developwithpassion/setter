@@ -9,4 +9,6 @@ class Source
   include Settings
 
   attr_accessor :some_setting
+  attr_accessor :other_setting
+  attr_accessor :yet_another_setting
 end
