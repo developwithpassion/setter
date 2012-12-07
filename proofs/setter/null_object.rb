@@ -7,7 +7,7 @@ Proof.start do
   r.prove { no_op? setting_with_default_null_object.some_method }
 end
 
-desc "Raise NoMethodError if unimplememented method called"
+desc "Raise NoMethodError if unimplemented method called"
 Proof.start do
   r = Receiver.new
 
