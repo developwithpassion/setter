@@ -1,7 +1,6 @@
 require_relative '../proofs_init'
 
-desc "Set default setting value"
-Proof.start do
+proof "Set default setting value" do
   r = Receiver.new
 
   r.prove { setting_with_default == 13 }
