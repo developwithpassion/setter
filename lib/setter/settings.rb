@@ -17,13 +17,15 @@ module Setter
       end
 
       def setting(name, options={})
-        setting_value = options[:default]
+        setting_value = nil
+        setting_value = options[:default] if (options.is_a? Hash) && options.has_key?(:default)
+        setting_value ||= options
 
-        send :define_method, "#{name}=" do |value|
+        define_method "#{name}=" do |value|
           setting_value = value
         end
 
-        send :define_method, name do
+        define_method name do
           setting_value
         end
 
