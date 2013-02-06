@@ -1,4 +1,4 @@
 require_relative 'proofs_init.rb'
 
-Proof::Runner::Suite.run 'proofs/setter/**/*.rb', 'proofs/demos/**/*.rb'
+Proof::Runner::Suite.run 'setter/**/*.rb', 'demos/**/*.rb'
 
