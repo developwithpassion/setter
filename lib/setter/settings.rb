@@ -17,7 +17,8 @@ module Setter
       end
 
       def setting(name, options={})
-        setting_value = options[:default]
+        setting_value = (options[:default] if options.is_a? Hash) || nil
+        setting_value ||= options
 
         send :define_method, "#{name}=" do |value|
           setting_value = value
