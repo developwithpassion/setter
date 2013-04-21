@@ -1,7 +1,12 @@
-setter
-======
+# Setter
 
-`setter` gem enables simple specification of settings that a Class can have. It also works in concert with the `configuration` gem which can set the settings.
+The `setter` library enables specification of and assignment to a class's "settings".
+
+## Status
+
+**Unreleased**
+
+NOTE: Dependencies are linked locally in the development environment via the [`path_gem` library](https://github.com/Sans/path-gem). Dependencies aren't installed by RubyGems, and some dependencies aren't yet published.
 
 ## Installation
 
@@ -20,7 +25,7 @@ Make the gem available for `path-gem`.
 
 ## Usage
 
-### include Setter::Settings
+### Include Setter::Settings
 
 Including `Setter::Settings` allows specification of a `setting`.
 
@@ -60,7 +65,7 @@ r.with_null.some_method == 'hi' # true
 
 ```
 
-### include Setter
+### Include Setter
 
 Inclusion of `Setter` allows setting settings from the senders attributes to the settings of the receiver.
 
@@ -78,13 +83,17 @@ s.other_setting = "other value"
 
 r = Receiver.new
 
-# set specific setting
+# Set specific setting
 s.set r, :some_setting
 r.some_setting == "value" # true
 r.other_setting == nil # true
 
-# set all settings
+# Set all settings
 s.set r
 r.some_setting == "value" # true
 r.other_setting == "other value" # true
 ```
+
+## License
+
+Setter is released under the [MIT License](http://www.opensource.org/licenses/MIT).
