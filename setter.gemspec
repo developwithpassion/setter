@@ -5,7 +5,7 @@ $:.unshift lib unless $:.include?(lib)
 Gem::Specification.new do |s|
   s.name = 'setter'
   s.summary = 'Setter Library'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
   s.authors = ['The Sans Collective']
   s.homepage = 'https://github.com/Sans/setter'
   s.require_paths = ['lib']
