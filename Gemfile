@@ -7,7 +7,7 @@ require 'path_gem'
 
 gem 'null_object'
 
-# For development
+# For local development
 path_gem 'proof'
 path_gem 'single'
 path_gem 'output'
