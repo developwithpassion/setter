@@ -24,7 +24,9 @@ class Receiver
   setting :some_setting
   setting :other_setting
   setting :with_default, :default => 13 # settings can have defaults
-  # a default can also be an object, that responds to every method with nil
+
+  # Note: A default can also be an object, that responds to every method with nil
+  # Uses the `null_object` gem.
   setting :with_null, :default => null_object(Something)
 end
 
