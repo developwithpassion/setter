@@ -4,9 +4,7 @@ The `setter` library enables specification of and assignment to a class's "setti
 
 ## Status
 
-**Unreleased**
-
-NOTE: Dependencies are linked locally in the development environment via the [`path_gem` library](https://github.com/Sans/path-gem). Dependencies aren't installed by RubyGems, and some dependencies aren't yet published.
+NOTE: Dependencies are linked locally in the development environment via the [`path_gem` library](https://github.com/Sans/path-gem). Development dependencies aren't installed by RubyGems.
 
 ## Usage
 
@@ -78,10 +76,6 @@ s.set r
 r.some_setting == "value" # true
 r.other_setting == "other value" # true
 ```
-
-## Demonstrations
-
-See demonstration code at: https://github.com/Sans/setter/blob/master/proofs/demos
 
 ## License
 
